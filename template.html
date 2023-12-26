@@ -1,109 +1,150 @@
-<!-- author : YuankunLiu D22092100201@cityu.mo -->
-<h1>${topItem.getField("title")}</h1>
+// @author: YuankunLiu [PUBLISH PAGE URL](https://github.com/lyk7539511/zotero-better-notes-template）
+// @author: Kingw413 [PUBLISH PAGE URL](https://github.com/windingwind/zotero-better-notes/discussions/598)
+<h1 style="text-align: center">${topItem.getField('title')}</h1>
+<hr/>
 <h2 style="color: #1B5E20; background-color:#F1F8E9;">💡 Meta Data</h2>
 
 <table>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
-                <p style="text-align: left; display: inline;">Title </p> <!-- 标题 -->
             </nobr>
-        </th>
-        <td style="background-color:#dbeedd;">${topItem.getField('title')}
-        </td>
-    </tr>
-    <tr>
-        <th style="background-color:#f3faf4;">
-            <nobr>
-                <p style="text-align: left; display: inline;">Journal </p> <!-- 期刊  -->
-            </nobr>
-        </th>
-        <td style="background-color:#f3faf4;">${topItem.getField('publicationTitle')}
-        </td>
-    </tr>
-    <tr>
-        <th style="background-color:#dbeedd;">
-            <nobr>
-                <p style="text-align: left; display: inline;">Authors </p> <!-- 作者 -->
-            </nobr>
-        </th>
-        <td style="background-color:#dbeedd;">${topItem.getCreators().map((v)=>v.firstName+" "+v.lastName).join("; ")}
-        </td>
-    </tr>
-    <tr>
-        <th style="background-color:#f3faf4;">
-            <nobr>
-                <p style="text-align: left; display: inline;">Date </p> <!-- 出版日期 -->
-            </nobr>
-        </th>
-        <td style="background-color:#f3faf4;">${topItem.getField('date')}
-        </td>
-    </tr>
-    <tr>
-        <th style="background-color:#dbeedd;">
-            <nobr>
-                <p style="text-align: left; display: inline;">DOI </p> <!-- DOI -->
+                <p style="text-align: left; display: inline;">Title</p> <!-- 标题 -->
             </nobr>
         </th>
         <td style="background-color:#dbeedd;">
-            <a href="https://doi.org/${topItem.getField('DOI')}">${topItem.getField('DOI')}</a>
+            ${topItem.getField('title')}
         </td>
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            <nobr>
-                <p style="text-align: left; display: inline;">JCR </p> <!-- JCR分区 -->
+            </nobr>
+                <p style="text-align: left; display: inline;">Journal</p> <!-- 期刊  -->
             </nobr>
         </th>
-        <td style="background-color:#f3faf4;">${topItem.getField('archive')}
+        <td style="background-color:#f3faf4;">
+            ${topItem.getField('publicationTitle')}
         </td>
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
-                <p style="text-align: left; display: inline;">IF </p> <!-- IF -->
+            </nobr>
+                <p style="text-align: left; display: inline;">Authors</p> <!-- 作者 -->
             </nobr>
         </th>
-        <td style="background-color:#dbeedd;">${topItem.getField('callNumber')}
+        <td style="background-color:#dbeedd;">
+            ${topItem.getCreators().map((v)=>v.firstName+" "+v.lastName).join("; ")}
         </td>
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            <nobr>
-                <p style="text-align: left; display: inline;">中科院 </p> <!-- 中科院分区 -->
+            </nobr>
+            <p style="text-align: left; display: inline;">Date</p> <!-- 出版日期 -->
             </nobr>
         </th>
-        <td style="background-color:#f3faf4;">(${topItem.getField('archiveLocation')}) ||
-            (${topItem.getField('libraryCatalog')})
+        <td style="background-color:#f3faf4;">
+            ${topItem.getField('date')}
+        </td>
+    </tr>
+    <tr>
+        <th style="background-color:#dbeedd;">
+            </nobr>
+            <p style="text-align: left; display: inline;">Tags</p> <!-- 文献信息 -->
+            </nobr>
+        </th>
+        <td style="background-color:#dbeedd;">
+          ${(() => {
+            let jsonString = "";
+            let tags = topItem.getField('extra');
+            let out = "";
+            if (tags) {
+              const lines = tags.split("\n");
+              const jsonObj = {};
+              lines.forEach(line => {
+                const [key, value] = line.split(": ");
+                jsonObj[key] = value;
+              });
+
+              jsonString = JSON.stringify(jsonObj);
+
+              if (jsonString) {
+                const jsonStartIndex = jsonString.indexOf('{');
+                if (jsonStartIndex !== -1) {
+                  jsonString = jsonString.slice(jsonStartIndex);
+                }
+
+              const keyValuePairs = JSON.parse(jsonString);
+              const colors = ["#eea2a4", "#fbda41", "#83cbac", "#2ea8e5", "#a28ae5"];
+
+              for (const key in keyValuePairs) {
+                  if (key === "JCR分区") {
+                      out += `<span style="background-color: ${colors[0]}; margin-right: 20px; padding:5px">JCR分区：${keyValuePairs[key]}</span>`;
+                  }
+                  if (key === "中科院分区升级版") {
+                      out += `<span style="background-color: ${colors[1]}; margin-right: 20px; padding:5px">中科院分区：${keyValuePairs[key]}</span>`;
+                  }
+                  if (key === "影响因子") {
+                      out += `<span style="background-color: ${colors[2]}; margin-right: 20px; padding:5px">IF: ${keyValuePairs[key]}</span>`;
+                  }
+                }
+              }
+            }
+            return out;
+        })()}
+        </td>
+    </tr>
+    <tr>
+        <th style="background-color:#f3faf4;">
+            </nobr>
+            <p style="text-align: left; display: inline;">DOI</p> <!-- DOI -->
+            </nobr>
+    </th>
+        <td style="background-color:#f3faf4;">
+            <a href="https://doi.org/${topItem.getField('DOI')}">${topItem.getField('DOI')}</a>
+                    </td>
+    </tr>
+    <tr>
+        <th style="background-color:#dbeedd;">
+            </nobr>
+            <p style="text-align: left; display: inline;">Attachment</p> <!-- 附件 -->
+            </nobr>
+    </th>
+        <td style="background-color:#dbeedd;">
+            <a href="zotero://open-pdf/0_${Zotero.Items.get(topItem.getAttachments())[0].key}">
+                ${Zotero.Items.get(topItem.getAttachments())[0].getFilename()}
+            </a>
         </td>
     </tr>
 </table>
 
-</span></h1>\n <h2 style="color:  #E65100; background-color:  #FFF8E1;">📜 Basic Information</h2>
+</span></h1>\n <h2 style="color:  #E65100; background-color: #FFF8E1;">📜 Basic Information</h2>
 <hr />
 
-<h3> <span style="color:  #1565C0">Abstract: </span></h3>
+<h3> <span style="color: #1565C0">Abstract: </span></h3>
 <p></p>
 
 <h3> <span style="color: #1565C0">Innovations: </span></h3>
 <p></p>
 
-</span></h1>\n <h2 style="color:#2E7D32; background-color:    #F1F8E9;">&#x1F4CA Research Content</h2>
+</span></h1>\n <h2 style="color:#2E7D32; background-color:#F1F8E9;">&#x1F4CA Research Content</h2>
 <hr />
 
-<h3> <span style="color:  #1565C0">Data: </span></h3>
+<h3> <span style="color: #1565C0">Data: </span></h3>
 <p></p>
 
-<h3> <span style="color:  #1565C0">Model: </span></h3>
+<h3> <span style="color: #1565C0">Model: </span></h3>
 <p></p>
 
-<h3> <span style="color:  #1565C0">Code: </span></h3>
+<h3> <span style="color: #1565C0">Code: </span></h3>
 <p></p>
 
-</span></h1>\n <h2 style="color:#4A148C; background-color:    #F5F5F5;">🚩 Conclusions</h2>
+</span></h1>\n <h2 style="color: #4A148C; background-color: #F5F5F5;">🚩 Conclusions</h2>
 <hr />
 <p></p>
 
-</span></h1>\n <h2 style="color:#1565C0; background-color:   #E1F5FE;">🔬 Future Work</h2>
+</span></h1>\n <h2 style="color: #f1939c; background-color: #e6d2d5;">📌 Q & A</h2>
+<hr />
+<p></p>
+
+</span></h1>\n <h2 style="color: #1565C0; background-color: #E1F5FE;">🔬 Future Work</h2>
 <hr />
 <p></p>
