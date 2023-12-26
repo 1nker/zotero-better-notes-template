@@ -7,7 +7,7 @@
 <table>
     <tr>
         <th style="background-color:#dbeedd;">
-            </nobr>
+            <nobr>
                 <p style="text-align: left; display: inline;">Title</p> <!-- 标题 -->
             </nobr>
         </th>
@@ -17,7 +17,7 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            </nobr>
+            <nobr>
                 <p style="text-align: left; display: inline;">Journal</p> <!-- 期刊  -->
             </nobr>
         </th>
@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            </nobr>
+            <nobr>
                 <p style="text-align: left; display: inline;">Authors</p> <!-- 作者 -->
             </nobr>
         </th>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            </nobr>
+            <nobr>
             <p style="text-align: left; display: inline;">Date</p> <!-- 出版日期 -->
             </nobr>
         </th>
@@ -47,7 +47,7 @@
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            </nobr>
+            <nobr>
             <p style="text-align: left; display: inline;">Tags</p> <!-- 文献信息 -->
             </nobr>
         </th>
@@ -77,13 +77,13 @@
 
               for (const key in keyValuePairs) {
                   if (key === "JCR分区") {
-                      out += `<span style="background-color: ${colors[0]}; margin-right: 20px; padding:5px">JCR分区：${keyValuePairs[key]}</span>`;
+                      out += `<span style="background-color: ${colors[0]}; margin-right: 20px; padding:5px">JCR分区：${keyValuePairs[key]} </span>`;
                   }
                   if (key === "中科院分区升级版") {
-                      out += `<span style="background-color: ${colors[1]}; margin-right: 20px; padding:5px">中科院分区：${keyValuePairs[key]}</span>`;
+                      out += `<span style="background-color: ${colors[1]}; margin-right: 20px; padding:5px">中科院分区：${keyValuePairs[key]} </span>`;
                   }
                   if (key === "影响因子") {
-                      out += `<span style="background-color: ${colors[2]}; margin-right: 20px; padding:5px">IF: ${keyValuePairs[key]}</span>`;
+                      out += `<span style="background-color: ${colors[2]}; margin-right: 20px; padding:5px">IF: ${keyValuePairs[key]} </span>`;
                   }
                 }
               }
@@ -94,7 +94,7 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            </nobr>
+            <nobr>
             <p style="text-align: left; display: inline;">DOI</p> <!-- DOI -->
             </nobr>
     </th>
@@ -104,7 +104,7 @@
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            </nobr>
+            <nobr>
             <p style="text-align: left; display: inline;">Attachment</p> <!-- 附件 -->
             </nobr>
     </th>
