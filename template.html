@@ -7,9 +7,7 @@
 <table>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
                 <p style="text-align: left; display: inline;">Title</p> <!-- 标题 -->
-            </nobr>
         </th>
         <td style="background-color:#dbeedd;">
             ${topItem.getField('title')}
@@ -17,9 +15,7 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            <nobr>
                 <p style="text-align: left; display: inline;">Journal</p> <!-- 期刊  -->
-            </nobr>
         </th>
         <td style="background-color:#f3faf4;">
             ${topItem.getField('publicationTitle')}
@@ -27,9 +23,7 @@
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
                 <p style="text-align: left; display: inline;">Authors</p> <!-- 作者 -->
-            </nobr>
         </th>
         <td style="background-color:#dbeedd;">
             ${topItem.getCreators().map((v)=>v.firstName+" "+v.lastName).join("; ")}
@@ -37,19 +31,15 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            <nobr>
             <p style="text-align: left; display: inline;">Date</p> <!-- 出版日期 -->
-            </nobr>
         </th>
         <td style="background-color:#f3faf4;">
-            ${topItem.getField('date')}
+        	${topItem.getField('date')}
         </td>
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
             <p style="text-align: left; display: inline;">Tags</p> <!-- 文献信息 -->
-            </nobr>
         </th>
         <td style="background-color:#dbeedd;">
           ${(() => {
@@ -94,29 +84,24 @@
     </tr>
     <tr>
         <th style="background-color:#f3faf4;">
-            <nobr>
             <p style="text-align: left; display: inline;">DOI</p> <!-- DOI -->
-            </nobr>
-    </th>
+    	</th>
         <td style="background-color:#f3faf4;">
             <a href="https://doi.org/${topItem.getField('DOI')}">${topItem.getField('DOI')}</a>
-                    </td>
+        </td>
     </tr>
     <tr>
         <th style="background-color:#dbeedd;">
-            <nobr>
             <p style="text-align: left; display: inline;">Attachment</p> <!-- 附件 -->
-            </nobr>
-    </th>
+    	</th>
         <td style="background-color:#dbeedd;">
             <a href="zotero://open-pdf/0_${Zotero.Items.get(topItem.getAttachments())[0].key}">
-                ${Zotero.Items.get(topItem.getAttachments())[0].getFilename()}
-            </a>
+            ${Zotero.Items.get(topItem.getAttachments())[0].getFilename()}</a>
         </td>
     </tr>
 </table>
 
-</span></h1>\n <h2 style="color:  #E65100; background-color: #FFF8E1;">📜 Basic Information</h2>
+<h2 style="color: #E65100; background-color: #FFF8E1;">📜 Basic Information</h2>
 <hr />
 
 <h3> <span style="color: #1565C0">Abstract: </span></h3>
@@ -125,7 +110,7 @@
 <h3> <span style="color: #1565C0">Innovations: </span></h3>
 <p></p>
 
-</span></h1>\n <h2 style="color:#2E7D32; background-color:#F1F8E9;">&#x1F4CA Research Content</h2>
+<h2 style="color: #2E7D32; background-color:#F1F8E9;">&#x1F4CA Research Content</h2>
 <hr />
 
 <h3> <span style="color: #1565C0">Data: </span></h3>
@@ -137,14 +122,14 @@
 <h3> <span style="color: #1565C0">Code: </span></h3>
 <p></p>
 
-</span></h1>\n <h2 style="color: #4A148C; background-color: #F5F5F5;">🚩 Conclusions</h2>
+<h2 style="color: #4A148C; background-color: #F5F5F5;">🚩 Conclusions</h2>
 <hr />
 <p></p>
 
-</span></h1>\n <h2 style="color: #f1939c; background-color: #e6d2d5;">📌 Q & A</h2>
+<h2 style="color: #f1939c; background-color: #e6d2d5;">📌 Q & A</h2>
 <hr />
 <p></p>
 
-</span></h1>\n <h2 style="color: #1565C0; background-color: #E1F5FE;">🔬 Future Work</h2>
+<h2 style="color: #1565C0; background-color: #E1F5FE;">🔬 Future Work</h2>
 <hr />
 <p></p>
